@@ -23,6 +23,7 @@ const App = () => {
     if (!ref.current) {
       return;
     }
+    iframe.current.srcdoc = html;
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
@@ -66,7 +67,12 @@ window.addEventListener('message',(event)=>{
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <iframe ref={iframe} sandbox='allow-scripts' srcDoc={html} />
+      <iframe
+        title='preview'
+        ref={iframe}
+        sandbox='allow-scripts'
+        srcDoc={html}
+      />
     </div>
   );
 };
